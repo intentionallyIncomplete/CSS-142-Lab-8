@@ -14,6 +14,8 @@ public class Lab8 {
 	 */
 	public static double median(double[] array) {
 		double median = 0;
+		double med1 = 0;
+		double med2 = 0;
 		/**if array length % 2 is more than 0, then it's odd
 		 * 		find the middle value, and return it
 		 * or else it's even
@@ -22,9 +24,15 @@ public class Lab8 {
 		*/
 		
 		if(array.length % 2 > 0) {
-			
+			for(int i=0;i<array.length/2;i++) {
+				median = array[i+1];
+			}
 		}else {
-			
+			for(int i=0;i<array.length/2;i++) {
+				med1 = array[i+1];
+				med2 = array[i];
+				median = (med1+med2)/2;
+			}
 		}
 		return median;
 	}
@@ -40,8 +48,21 @@ public class Lab8 {
 	 */
 	public static boolean isSorted(double[] array) {
 
-		// your code here
-		return false; //remove this later
+		/*
+		 * given each element, if the one on the left is greater than the right
+		 * then swap the elements position
+		 * */
+		double tempElement =0;
+		for(int i=0;i<array.length;i++) {
+			for(int j=i+1;j<array.length;j++) {
+				if(array[i] > array[j]) {
+					tempElement = array[i];
+					array[i] = array[j];
+					array[j] = tempElement;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -60,9 +81,27 @@ public class Lab8 {
 	 */
 	public static void findCommon(int[] a1, int[]a2, int[] common) {
 
-		// your code here, this method requires some serious thinking before
-		// implementing the logic
-
+		/*
+		 * for the elements in the first array
+		 * and the elements in the second array,
+		 * if the first array element equals 
+		 * any of the second array elements, then 
+		 * add that to the third element, or else make that 
+		 * next element in the third array equal to zero
+		 * */
+		
+		for(int i=0;i<a2.length;i++) {
+			
+			for(int j=i;j<a1.length;j++) {
+				
+				if(a2[i] == a1[j]) {
+					common[i] = a1[j];
+					System.out.println(i);
+				}else {
+					common[i] = 0;
+				}
+			}
+		}
 	}
 
 
@@ -78,8 +117,11 @@ public class Lab8 {
 	 * Another call would leave the list as [8, 19, 7, 3] .
 	 */
 	public static void rotateRight(int[] array) {
-
-		// your code here
+		int tempElement = array[array.length-1];
+        for (int i = array.length - 2; i >= 0; i--) {
+            array[i + 1] = array[i];
+        }
+        array[0] = tempElement;
 	}
 
 	/**
@@ -92,9 +134,13 @@ public class Lab8 {
 	 * would return 2 because there are 2 occurrences of the value 3 in the list.
 	 */
 	public static int count(int[] array, int target) {
-
-		// your code here
-		return 0; //remove this later
+		int count = 0;
+		for(int i=0;i<array.length;i++) {
+			if(array[i] == target) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
